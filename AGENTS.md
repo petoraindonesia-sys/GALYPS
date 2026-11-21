@@ -8,16 +8,18 @@ Bangun website katalog dan galeri bisnis gypsum ornamen, plafon, dan list. Websi
 
 ## 2. Teknologi yang diizinkan
 
-- Astro dengan adapter Cloudflare untuk website publik.
+- Astro dengan adapter Cloudflare untuk route on-demand/SSR yang memerlukan runtime.
 - Tailwind CSS untuk styling.
-- Cloudflare Pages untuk hosting website.
+- Cloudflare Workers + Static Assets sebagai hosting website dan runtime.
 - Cloudflare D1 (SQLite) untuk produk, galeri, dan pengaturan.
 - Cloudflare R2 untuk foto.
-- Cloudflare Workers untuk API admin, upload, dan validasi request.
+- Cloudflare Worker API untuk admin CRUD, upload, dan validasi request.
 - Cloudflare Access One-Time PIN untuk autentikasi admin.
 - GitHub Codespaces sebagai lingkungan pengembangan.
 
-Jangan mengganti stack, menambahkan backend/database eksternal, atau menghubungkan platform deployment lain tanpa persetujuan pemilik proyek. GitHub hanya untuk version control dan dokumentasi; jangan menggunakannya sebagai CMS atau target deployment.
+Jangan menggunakan Cloudflare Pages untuk target deployment GALYPS. Jangan mengganti stack, menambahkan backend/database eksternal, atau menghubungkan platform deployment lain tanpa persetujuan pemilik proyek. GitHub hanya untuk version control dan dokumentasi; jangan menggunakannya sebagai CMS atau target deployment.
+
+Astro yang sepenuhnya pre-rendered tidak memerlukan adapter Cloudflare. Gunakan adapter resmi `@astrojs/cloudflare` ketika route memerlukan on-demand rendering atau binding runtime. Pilihan prerender vs SSR harus mengikuti kebutuhan data nyata dan diuji terhadap kuota Workers Free.
 
 ## 3. Batasan produk yang wajib dipertahankan
 
@@ -67,6 +69,7 @@ Jangan mengganti stack, menambahkan backend/database eksternal, atau menghubungk
 - Gunakan pagination atau batas jumlah item pada daftar admin.
 - Cache halaman publik dan aset secara terukur; invalidasi cache harus mengikuti prosedur terdokumentasi.
 - Jangan mengklaim kepatuhan kuota Free tanpa pengukuran dan pemeriksaan limit resmi yang berlaku saat implementasi.
+- Perhatikan batas CPU Workers Free; SSR yang melebihi CPU budget harus dioptimalkan atau dialihkan ke prerender/cache yang aman.
 
 ## 8. Keamanan
 
