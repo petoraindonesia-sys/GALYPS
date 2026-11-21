@@ -35,3 +35,29 @@ Status integrasi branch dicatat terpisah: `UNMERGED` sampai perubahan benar-bena
 - **PR:** Belum dibuat.
 - **Integrasi:** UNMERGED / dokumentasi belum dibuat.
 - **Catatan:** Tahap ini hanya menyusun dokumen dan kontrak kerja. Implementasi kode dimulai setelah dokumentasi ditinjau dan tahap ini ditutup.
+
+
+---
+
+## GALYPS-DOCS-001 — Catatan penutupan dokumentasi
+
+- **Status:** IMPLEMENTED
+- **Branch kerja:** `docs/project-foundation`
+- **Tujuan:** Menyelesaikan baseline dokumentasi dan kontrak kerja sebelum pembuatan codebase aplikasi.
+- **File dibuat pada branch kerja:**
+  - `README.md`
+  - `AGENTS.md`
+  - `docs/PRD.md`
+  - `docs/ARCHITECTURE.md`
+  - `docs/DATA-MODEL.md`
+  - `docs/SECURITY.md`
+  - `docs/CONTENT-OPERATIONS.md`
+  - `docs/DEVELOPMENT-PLAN.md`
+  - `docs/DECISIONS.md`
+- **File progres:** `progres.md` diperbarui dengan catatan penutupan ini; entri awal dipertahankan sebagai riwayat.
+- **Pemeriksaan:** File dokumentasi berhasil dibuat melalui GitHub Contents API. Belum ada test suite, build, atau CI karena codebase aplikasi belum dibuat.
+- **Status verifikasi:** IMPLEMENTED; belum VERIFIED.
+- **Commit SHA:** Akan dicatat setelah commit penutupan progres.
+- **PR:** Belum dibuat.
+- **Integrasi:** UNMERGED; branch kerja belum digabung ke `main`.
+- **Catatan:** Tidak ada kode aplikasi, migrasi D1, Worker, konfigurasi Pages, atau deployment yang dibuat pada tahap ini. Keputusan GAL-P01 sampai GAL-P12 masih PENDING.
