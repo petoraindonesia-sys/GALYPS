@@ -35,3 +35,151 @@ Status integrasi branch dicatat terpisah: `UNMERGED` sampai perubahan benar-bena
 - **PR:** Belum dibuat.
 - **Integrasi:** UNMERGED / dokumentasi belum dibuat.
 - **Catatan:** Tahap ini hanya menyusun dokumen dan kontrak kerja. Implementasi kode dimulai setelah dokumentasi ditinjau dan tahap ini ditutup.
+
+
+---
+
+## GALYPS-DOCS-001 — Catatan penutupan dokumentasi
+
+- **Status:** IMPLEMENTED
+- **Branch kerja:** `docs/project-foundation`
+- **Tujuan:** Menyelesaikan baseline dokumentasi dan kontrak kerja sebelum pembuatan codebase aplikasi.
+- **File dibuat pada branch kerja:**
+  - `README.md`
+  - `AGENTS.md`
+  - `docs/PRD.md`
+  - `docs/ARCHITECTURE.md`
+  - `docs/DATA-MODEL.md`
+  - `docs/SECURITY.md`
+  - `docs/CONTENT-OPERATIONS.md`
+  - `docs/DEVELOPMENT-PLAN.md`
+  - `docs/DECISIONS.md`
+- **File progres:** `progres.md` diperbarui dengan catatan penutupan ini; entri awal dipertahankan sebagai riwayat.
+- **Pemeriksaan:** File dokumentasi berhasil dibuat melalui GitHub Contents API. Belum ada test suite, build, atau CI karena codebase aplikasi belum dibuat.
+- **Status verifikasi:** IMPLEMENTED; belum VERIFIED.
+- **Commit SHA:** Akan dicatat setelah commit penutupan progres.
+- **PR:** Belum dibuat.
+- **Integrasi:** UNMERGED; branch kerja belum digabung ke `main`.
+- **Catatan:** Tidak ada kode aplikasi, migrasi D1, Worker, konfigurasi Pages, atau deployment yang dibuat pada tahap ini. Keputusan GAL-P01 sampai GAL-P12 masih PENDING.
+
+
+## GALYPS-DOCS-001 — Bukti pull request
+
+- **PR:** [#1 — docs: establish GALYPS product and engineering foundation](https://github.com/petoraindonesia-sys/GALYPS/pull/1)
+- **Status PR:** OPEN, belum merged.
+- **Head commit saat PR dibuat:** `e4bf9e66c23e10265f69ca574b6dea44982f056c`
+- **Jumlah file pada PR saat dibuat:** 10
+- **Status pekerjaan:** IMPLEMENTED; belum VERIFIED (tidak ada build/test karena belum ada codebase).
+- **Integrasi:** UNMERGED.
+
+
+## GALYPS-REQ-001 — Audit kebutuhan dan validasi teknis
+
+- **Status:** IN_PROGRESS
+- **Branch:** `docs/project-foundation` (melanjutkan PR #1 yang masih OPEN)
+- **Tujuan:** Memvalidasi keputusan arsitektur GALYPS terhadap dokumentasi Cloudflare terkini, memetakan keputusan PENDING, dan menyiapkan gerbang yang jelas sebelum fondasi codebase.
+- **Scope:**
+  - Verifikasi batas dan ketersediaan paket Cloudflare Free untuk komponen yang dipilih.
+  - Tinjau kesesuaian pilihan Pages, Workers API, D1, R2, Access, dan strategi cache.
+  - Identifikasi keputusan yang benar-benar memblokir implementasi dibanding keputusan yang dapat ditunda.
+  - Perbarui dokumentasi/Decision Register hanya berdasarkan bukti dan keputusan eksplisit.
+- **Acceptance criteria:**
+  - Klaim limit/fitur Cloudflare memiliki rujukan resmi dan tanggal pemeriksaan.
+  - Risiko perubahan platform atau batas paket ditandai jelas.
+  - Keputusan yang belum disetujui tetap PENDING.
+  - Tidak ada resource Cloudflare atau deployment yang dibuat tanpa persetujuan.
+  - Hasil dan blocker dicatat append-only di `progres.md`.
+- **Test/CI:** Belum ada; tahap ini adalah audit dokumentasi/teknis.
+- **Commit SHA:** Akan dicatat setelah pembaruan selesai.
+- **PR:** #1, OPEN, UNMERGED.
+- **Integrasi:** UNMERGED.
+
+
+## GALYPS-REQ-001 — Hasil audit dan blocker keputusan hosting
+
+- **Status:** BLOCKED
+- **Branch:** `docs/project-foundation`
+- **Tujuan:** Menutup pemeriksaan awal batas paket dan kompatibilitas hosting sebelum fondasi codebase.
+- **Hasil validasi dokumentasi resmi (21 Nov 2026):**
+  - Workers Free: 100.000 request/hari; CPU 10 ms/request.
+  - D1 Free: 5 juta row read/hari, 100.000 row write/hari, total storage 5 GB. Batas harian yang terlampaui dapat menyebabkan query gagal sampai reset.
+  - R2 Standard Free: 10 GB-month, 1 juta operasi Class A/bulan, 10 juta Class B/bulan; egress internet gratis.
+  - Cloudflare Zero Trust Free: hingga 50 pengguna; Access One-Time PIN dikirim ke email yang lolos policy dan PIN berlaku 10 menit.
+  - Pages Free: 500 build/bulan, satu build berjalan bersamaan, 20.000 file per site, batas ukuran satu asset 25 MiB.
+- **Temuan kompatibilitas utama:** Dokumentasi Astro terbaru menyebut dukungan Cloudflare Pages pada Astro Cloudflare adapter telah dihapus. Cloudflare/Astro merekomendasikan Workers untuk proyek baru. Karena GAL-012 sebelumnya menetapkan Pages, perubahan ke Workers Static Assets tidak boleh dilakukan tanpa persetujuan Owner.
+- **Keputusan baru dicatat:** GAL-P13 pada `docs/DECISIONS.md`, status PENDING: memilih tetap Pages dengan kombinasi versi/arsitektur yang kompatibel atau beralih ke Workers + Static Assets.
+- **Sumber resmi yang ditinjau:**
+  - https://v6.docs.astro.build/en/guides/integrations-guide/cloudflare/
+  - https://docs.astro.build/en/guides/deploy/cloudflare/
+  - https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/
+  - https://developers.cloudflare.com/workers/platform/limits/
+  - https://developers.cloudflare.com/d1/platform/pricing/
+  - https://developers.cloudflare.com/d1/reference/faq/
+  - https://developers.cloudflare.com/r2/pricing/
+  - https://www.cloudflare.com/sase/products/access/
+  - https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/
+  - https://developers.cloudflare.com/pages/platform/limits/
+- **File berubah pada tahap ini:** `docs/DECISIONS.md` (menambahkan GAL-P13 dan memperjelas catatan GAL-P12); `progres.md` (catatan hasil audit).
+- **Commit SHA perubahan Decision Register:** `2fb9fb48d02d48231d2b5b173025fbce87dad758`.
+- **Test/CI:** Tidak dijalankan; tidak ada kode aplikasi pada tahap audit.
+- **Status verifikasi:** Audit dokumen selesai berdasarkan sumber resmi yang tersedia; belum ada verifikasi konfigurasi akun Cloudflare.
+- **PR:** #1, OPEN; head akan mengikuti commit terbaru branch.
+- **Integrasi:** UNMERGED.
+- **Blocker:** Persetujuan Owner untuk GAL-P13 diperlukan sebelum memilih adapter/runtime dan memulai Tahap 2.
+
+
+## GALYPS-HOST-001 — Persetujuan perubahan hosting Astro
+
+- **Status:** IMPLEMENTED
+- **Keputusan Owner:** Pesan "lanjutkan" setelah rekomendasi perubahan hosting diperlakukan sebagai persetujuan untuk melanjutkan dengan Cloudflare Workers + Static Assets. Keputusan ini menggantikan hosting Pages untuk deployment GALYPS.
+- **Keputusan terkait:** GAL-012 direvisi melalui catatan keputusan baru; Astro tetap framework frontend, Cloudflare adapter digunakan untuk SSR/on-demand route bila diperlukan, dan Workers menjadi runtime/hosting.
+- **Dasar teknis:** Dokumentasi Astro menyatakan adapter Cloudflare tidak lagi mendukung Pages; dokumentasi Cloudflare merekomendasikan Workers untuk proyek baru. Untuk Astro yang sepenuhnya statis, adapter tidak diperlukan; untuk on-demand rendering, gunakan `@astrojs/cloudflare`.
+- **Sumber:** https://docs.astro.build/en/guides/deploy/cloudflare/ dan https://docs.astro.build/en/guides/integrations-guide/cloudflare/
+- **Commit SHA:** Akan dicatat pada commit pembaruan dokumen.
+- **PR:** #1, OPEN, UNMERGED.
+- **Test/CI:** Tidak ada; keputusan dokumentasi.
+- **Catatan:** Tidak ada akun, resource, domain, atau deployment Cloudflare yang dibuat.
+
+## GALYPS-FOUNDATION-001 — Fondasi codebase Astro + Workers
+
+- **Status:** IN_PROGRESS
+- **Branch:** `docs/project-foundation` (melanjutkan PR #1)
+- **Tujuan:** Menginisialisasi fondasi aplikasi lokal sesuai keputusan hosting yang telah disetujui, tanpa membuat resource/deployment Cloudflare.
+- **Scope:**
+  - Sinkronisasi AGENTS, arsitektur, README, rencana pengembangan, dan Decision Register terhadap Workers + Static Assets.
+  - Inisialisasi Astro + Cloudflare adapter untuk SSR route yang dibutuhkan; Tailwind CSS.
+  - Konfigurasi Wrangler lokal dengan binding placeholder non-secret untuk D1 dan R2, tanpa ID resource nyata.
+  - Struktur source awal, environment example, dan perintah dev/build/typecheck/test.
+- **Acceptance criteria:**
+  - Tidak ada referensi Pages yang bertentangan sebagai target hosting.
+  - Dependensi terpasang dan lockfile dibuat.
+  - Build dan preview lokal berjalan.
+  - Tidak ada credential atau ID resource produksi yang dikarang.
+  - Progres mencatat hasil perintah yang benar-benar dijalankan.
+- **Test/CI:** Belum dijalankan.
+- **PR:** #1, OPEN, UNMERGED.
+
+
+## GALYPS-HOST-001 — Penutupan persetujuan dan sinkronisasi dokumentasi
+
+- **Status:** IMPLEMENTED
+- **Keputusan Owner:** "lanjutkan" setelah rekomendasi hosting dianggap sebagai persetujuan eksplisit untuk GAL-022: Cloudflare Workers + Static Assets.
+- **Dokumen disinkronkan:** `AGENTS.md`, `README.md`, `docs/ARCHITECTURE.md`, `docs/DEVELOPMENT-PLAN.md`, `docs/DECISIONS.md`.
+- **Perubahan penting:** GAL-012 Pages dipertahankan sebagai keputusan awal yang telah digantikan; GAL-022 mencatat hosting Workers yang disetujui. GAL-P13 diselesaikan dan tidak lagi menjadi blocker.
+- **Commit SHA dokumen terakhir:** `e09099368c33aac633c1e48495fd1ece7ae7c7b3`.
+- **Test/CI:** Tidak ada; pembaruan dokumentasi.
+- **PR:** #1, OPEN, UNMERGED.
+- **Catatan koreksi:** Entri audit sebelumnya menyebut GAL-P13 masih memblokir implementasi. Catatan tersebut adalah riwayat saat keputusan belum diberikan; keputusan Owner berikutnya menyelesaikan blocker itu.
+
+## GALYPS-FOUNDATION-001 — Status eksekusi fondasi codebase
+
+- **Status:** BLOCKED
+- **Tujuan:** Memulai instalasi dependency, pembuatan lockfile, konfigurasi Astro/Workers/Tailwind, dan verifikasi build lokal.
+- **Pekerjaan yang telah dilakukan:** Versi rilis terkini Astro, `@astrojs/cloudflare`, Tailwind CSS, dan Wrangler ditinjau dari metadata npm; dokumentasi resmi Astro/Cloudflare telah dicocokkan.
+- **Blocker aktual:** Lingkungan eksekusi yang tersedia pada sesi ini tidak memiliki akses DNS/network ke GitHub/npm dan tidak terhubung ke filesystem Codespaces repository. Percobaan clone repository melalui HTTPS gagal karena `Could not resolve host: github.com`. GitHub Contents API dapat mengubah file teks, tetapi tidak dapat menjalankan package manager atau menghasilkan lockfile yang sah.
+- **Keputusan keselamatan kualitas:** Tidak membuat `package.json` tanpa lockfile, tidak mengarang lockfile, dan tidak mengklaim build/test. Source scaffold ditahan sampai ada terminal Codespaces atau lingkungan repository dengan akses package registry.
+- **Yang dibutuhkan untuk membuka blocker:** Jalankan sesi Codespaces repository GALYPS atau sediakan lingkungan terminal repository yang dapat mengakses npm registry. Setelah tersedia, lanjutkan dependency install, lockfile, build, dev/preview, dan pengujian binding lokal.
+- **Test/CI:** Tidak dijalankan.
+- **Commit SHA dokumentasi terakhir:** `e09099368c33aac633c1e48495fd1ece7ae7c7b3`.
+- **PR:** #1, OPEN, UNMERGED.
+- **Integrasi:** UNMERGED.
