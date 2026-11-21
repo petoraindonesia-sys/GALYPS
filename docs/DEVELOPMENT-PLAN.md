@@ -3,7 +3,6 @@
 Rencana ini mengurutkan pekerjaan agar setiap lapisan dapat diuji sebelum melanjutkan. Fase berikutnya tidak boleh dianggap selesai hanya karena kode telah ditulis.
 
 ## Tahap 0 — Dokumentasi dan kontrak proyek
-**Status awal:** IN_PROGRESS
 
 Deliverables:
 - README dan AGENTS.md.
@@ -14,9 +13,9 @@ Deliverables:
 Gerbang penerimaan:
 - Dokumen saling konsisten.
 - PENDING tercatat eksplisit.
-- Tidak ada codebase aplikasi pada tahap ini.
 
 ## Tahap 1 — Audit kebutuhan dan keputusan tersisa
+
 Deliverables:
 - Konfirmasi identitas bisnis, konten awal, domain, email admin, Access application, bucket, D1 database, batas foto, strategi cache.
 - Konfirmasi struktur URL dan kebutuhan SEO.
@@ -27,21 +26,23 @@ Gerbang penerimaan:
 - Tidak ada credential ditulis di dokumen.
 
 ## Tahap 2 — Fondasi codebase
+
 Deliverables:
-- Inisialisasi Astro + adapter Cloudflare.
+- Inisialisasi Astro + adapter Cloudflare untuk route runtime.
 - Konfigurasi Tailwind CSS.
-- Konfigurasi Wrangler untuk Pages, Worker, D1, dan R2 sesuai resource yang disetujui.
+- Konfigurasi Wrangler untuk Workers Static Assets, D1, dan R2 menggunakan binding lokal; tanpa resource ID produksi yang dikarang.
 - Struktur source, environment example, lint/format/typecheck/test.
 - Instruksi local development di Codespaces.
 
 Gerbang penerimaan:
 - Dependency terpasang dan lockfile tersedia.
 - Build berhasil.
-- Dev server berjalan.
-- Binding development dapat diuji.
+- Dev server dan preview Worker berjalan lokal.
+- Binding development D1/R2 dapat diuji.
 - Tidak ada secret dalam repository.
 
 ## Tahap 3 — Database dan seed
+
 Deliverables:
 - Migrasi D1.
 - Indeks dan constraint.
@@ -55,6 +56,7 @@ Gerbang penerimaan:
 - Draft tidak bocor ke query publik.
 
 ## Tahap 4 — API admin dan keamanan
+
 Deliverables:
 - Worker API.
 - Verifikasi Cloudflare Access JWT.
@@ -69,6 +71,7 @@ Gerbang penerimaan:
 - Test security lulus.
 
 ## Tahap 5 — R2 dan pipeline foto
+
 Deliverables:
 - Browser image optimization.
 - Upload Worker ke R2.
@@ -83,6 +86,7 @@ Gerbang penerimaan:
 - Tidak ada orphan yang tidak tertangani.
 
 ## Tahap 6 — Website publik
+
 Deliverables:
 - Beranda, katalog, detail produk, galeri, tentang, kontak.
 - WhatsApp CTA.
@@ -97,6 +101,7 @@ Gerbang penerimaan:
 - Mobile dan desktop diuji.
 
 ## Tahap 7 — Admin UI
+
 Deliverables:
 - Dashboard sederhana.
 - Form produk dan galeri.
@@ -110,6 +115,7 @@ Gerbang penerimaan:
 - UI dapat digunakan di HP dan laptop.
 
 ## Tahap 8 — Hardening dan release
+
 Deliverables:
 - Audit keamanan, performa, aksesibilitas, SEO.
 - Uji kuota dan perilaku cache.
