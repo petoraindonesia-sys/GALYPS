@@ -126,3 +126,35 @@ Status integrasi branch dicatat terpisah: `UNMERGED` sampai perubahan benar-bena
 - **PR:** #1, OPEN; head akan mengikuti commit terbaru branch.
 - **Integrasi:** UNMERGED.
 - **Blocker:** Persetujuan Owner untuk GAL-P13 diperlukan sebelum memilih adapter/runtime dan memulai Tahap 2.
+
+
+## GALYPS-HOST-001 — Persetujuan perubahan hosting Astro
+
+- **Status:** IMPLEMENTED
+- **Keputusan Owner:** Pesan "lanjutkan" setelah rekomendasi perubahan hosting diperlakukan sebagai persetujuan untuk melanjutkan dengan Cloudflare Workers + Static Assets. Keputusan ini menggantikan hosting Pages untuk deployment GALYPS.
+- **Keputusan terkait:** GAL-012 direvisi melalui catatan keputusan baru; Astro tetap framework frontend, Cloudflare adapter digunakan untuk SSR/on-demand route bila diperlukan, dan Workers menjadi runtime/hosting.
+- **Dasar teknis:** Dokumentasi Astro menyatakan adapter Cloudflare tidak lagi mendukung Pages; dokumentasi Cloudflare merekomendasikan Workers untuk proyek baru. Untuk Astro yang sepenuhnya statis, adapter tidak diperlukan; untuk on-demand rendering, gunakan `@astrojs/cloudflare`.
+- **Sumber:** https://docs.astro.build/en/guides/deploy/cloudflare/ dan https://docs.astro.build/en/guides/integrations-guide/cloudflare/
+- **Commit SHA:** Akan dicatat pada commit pembaruan dokumen.
+- **PR:** #1, OPEN, UNMERGED.
+- **Test/CI:** Tidak ada; keputusan dokumentasi.
+- **Catatan:** Tidak ada akun, resource, domain, atau deployment Cloudflare yang dibuat.
+
+## GALYPS-FOUNDATION-001 — Fondasi codebase Astro + Workers
+
+- **Status:** IN_PROGRESS
+- **Branch:** `docs/project-foundation` (melanjutkan PR #1)
+- **Tujuan:** Menginisialisasi fondasi aplikasi lokal sesuai keputusan hosting yang telah disetujui, tanpa membuat resource/deployment Cloudflare.
+- **Scope:**
+  - Sinkronisasi AGENTS, arsitektur, README, rencana pengembangan, dan Decision Register terhadap Workers + Static Assets.
+  - Inisialisasi Astro + Cloudflare adapter untuk SSR route yang dibutuhkan; Tailwind CSS.
+  - Konfigurasi Wrangler lokal dengan binding placeholder non-secret untuk D1 dan R2, tanpa ID resource nyata.
+  - Struktur source awal, environment example, dan perintah dev/build/typecheck/test.
+- **Acceptance criteria:**
+  - Tidak ada referensi Pages yang bertentangan sebagai target hosting.
+  - Dependensi terpasang dan lockfile dibuat.
+  - Build dan preview lokal berjalan.
+  - Tidak ada credential atau ID resource produksi yang dikarang.
+  - Progres mencatat hasil perintah yang benar-benar dijalankan.
+- **Test/CI:** Belum dijalankan.
+- **PR:** #1, OPEN, UNMERGED.
