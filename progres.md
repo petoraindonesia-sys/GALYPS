@@ -71,3 +71,25 @@ Status integrasi branch dicatat terpisah: `UNMERGED` sampai perubahan benar-bena
 - **Jumlah file pada PR saat dibuat:** 10
 - **Status pekerjaan:** IMPLEMENTED; belum VERIFIED (tidak ada build/test karena belum ada codebase).
 - **Integrasi:** UNMERGED.
+
+
+## GALYPS-REQ-001 — Audit kebutuhan dan validasi teknis
+
+- **Status:** IN_PROGRESS
+- **Branch:** `docs/project-foundation` (melanjutkan PR #1 yang masih OPEN)
+- **Tujuan:** Memvalidasi keputusan arsitektur GALYPS terhadap dokumentasi Cloudflare terkini, memetakan keputusan PENDING, dan menyiapkan gerbang yang jelas sebelum fondasi codebase.
+- **Scope:**
+  - Verifikasi batas dan ketersediaan paket Cloudflare Free untuk komponen yang dipilih.
+  - Tinjau kesesuaian pilihan Pages, Workers API, D1, R2, Access, dan strategi cache.
+  - Identifikasi keputusan yang benar-benar memblokir implementasi dibanding keputusan yang dapat ditunda.
+  - Perbarui dokumentasi/Decision Register hanya berdasarkan bukti dan keputusan eksplisit.
+- **Acceptance criteria:**
+  - Klaim limit/fitur Cloudflare memiliki rujukan resmi dan tanggal pemeriksaan.
+  - Risiko perubahan platform atau batas paket ditandai jelas.
+  - Keputusan yang belum disetujui tetap PENDING.
+  - Tidak ada resource Cloudflare atau deployment yang dibuat tanpa persetujuan.
+  - Hasil dan blocker dicatat append-only di `progres.md`.
+- **Test/CI:** Belum ada; tahap ini adalah audit dokumentasi/teknis.
+- **Commit SHA:** Akan dicatat setelah pembaruan selesai.
+- **PR:** #1, OPEN, UNMERGED.
+- **Integrasi:** UNMERGED.
