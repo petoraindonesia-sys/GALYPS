@@ -43,7 +43,8 @@ Dokumen ini mencatat keputusan produk/teknis yang telah disampaikan pemilik proy
 | GAL-P09 | URL | Pola slug dan kebijakan URL lama ketika produk dihapus/diubah | PENDING |
 | GAL-P10 | Jam kerja | Format jam kerja dan dukungan beberapa rentang per hari | PENDING |
 | GAL-P11 | Profil bisnis | Apakah konten Tentang dikelola sebagai field pengaturan atau halaman konten terpisah | PENDING |
-| GAL-P12 | Batas paket | Verifikasi limit Free aktual untuk Pages, Workers, D1, R2, dan Access saat setup | PENDING |
+| GAL-P12 | Batas paket | Verifikasi limit Free aktual untuk Pages, Workers, D1, R2, dan Access saat setup; batas publik sudah ditinjau 21 Nov 2026, tetapi kelayakan akun/resource tetap perlu dicek saat setup | PENDING |
+| GAL-P13 | Hosting Astro | Tetap menggunakan Cloudflare Pages dengan versi/arsitektur Astro yang kompatibel, atau mengubah hosting ke Cloudflare Workers + Static Assets mengikuti dukungan Astro terbaru | PENDING |
 
 ## Aturan perubahan
 
