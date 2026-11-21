@@ -158,3 +158,28 @@ Status integrasi branch dicatat terpisah: `UNMERGED` sampai perubahan benar-bena
   - Progres mencatat hasil perintah yang benar-benar dijalankan.
 - **Test/CI:** Belum dijalankan.
 - **PR:** #1, OPEN, UNMERGED.
+
+
+## GALYPS-HOST-001 — Penutupan persetujuan dan sinkronisasi dokumentasi
+
+- **Status:** IMPLEMENTED
+- **Keputusan Owner:** "lanjutkan" setelah rekomendasi hosting dianggap sebagai persetujuan eksplisit untuk GAL-022: Cloudflare Workers + Static Assets.
+- **Dokumen disinkronkan:** `AGENTS.md`, `README.md`, `docs/ARCHITECTURE.md`, `docs/DEVELOPMENT-PLAN.md`, `docs/DECISIONS.md`.
+- **Perubahan penting:** GAL-012 Pages dipertahankan sebagai keputusan awal yang telah digantikan; GAL-022 mencatat hosting Workers yang disetujui. GAL-P13 diselesaikan dan tidak lagi menjadi blocker.
+- **Commit SHA dokumen terakhir:** `e09099368c33aac633c1e48495fd1ece7ae7c7b3`.
+- **Test/CI:** Tidak ada; pembaruan dokumentasi.
+- **PR:** #1, OPEN, UNMERGED.
+- **Catatan koreksi:** Entri audit sebelumnya menyebut GAL-P13 masih memblokir implementasi. Catatan tersebut adalah riwayat saat keputusan belum diberikan; keputusan Owner berikutnya menyelesaikan blocker itu.
+
+## GALYPS-FOUNDATION-001 — Status eksekusi fondasi codebase
+
+- **Status:** BLOCKED
+- **Tujuan:** Memulai instalasi dependency, pembuatan lockfile, konfigurasi Astro/Workers/Tailwind, dan verifikasi build lokal.
+- **Pekerjaan yang telah dilakukan:** Versi rilis terkini Astro, `@astrojs/cloudflare`, Tailwind CSS, dan Wrangler ditinjau dari metadata npm; dokumentasi resmi Astro/Cloudflare telah dicocokkan.
+- **Blocker aktual:** Lingkungan eksekusi yang tersedia pada sesi ini tidak memiliki akses DNS/network ke GitHub/npm dan tidak terhubung ke filesystem Codespaces repository. Percobaan clone repository melalui HTTPS gagal karena `Could not resolve host: github.com`. GitHub Contents API dapat mengubah file teks, tetapi tidak dapat menjalankan package manager atau menghasilkan lockfile yang sah.
+- **Keputusan keselamatan kualitas:** Tidak membuat `package.json` tanpa lockfile, tidak mengarang lockfile, dan tidak mengklaim build/test. Source scaffold ditahan sampai ada terminal Codespaces atau lingkungan repository dengan akses package registry.
+- **Yang dibutuhkan untuk membuka blocker:** Jalankan sesi Codespaces repository GALYPS atau sediakan lingkungan terminal repository yang dapat mengakses npm registry. Setelah tersedia, lanjutkan dependency install, lockfile, build, dev/preview, dan pengujian binding lokal.
+- **Test/CI:** Tidak dijalankan.
+- **Commit SHA dokumentasi terakhir:** `e09099368c33aac633c1e48495fd1ece7ae7c7b3`.
+- **PR:** #1, OPEN, UNMERGED.
+- **Integrasi:** UNMERGED.
