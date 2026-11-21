@@ -61,3 +61,13 @@ Status integrasi branch dicatat terpisah: `UNMERGED` sampai perubahan benar-bena
 - **PR:** Belum dibuat.
 - **Integrasi:** UNMERGED; branch kerja belum digabung ke `main`.
 - **Catatan:** Tidak ada kode aplikasi, migrasi D1, Worker, konfigurasi Pages, atau deployment yang dibuat pada tahap ini. Keputusan GAL-P01 sampai GAL-P12 masih PENDING.
+
+
+## GALYPS-DOCS-001 — Bukti pull request
+
+- **PR:** [#1 — docs: establish GALYPS product and engineering foundation](https://github.com/petoraindonesia-sys/GALYPS/pull/1)
+- **Status PR:** OPEN, belum merged.
+- **Head commit saat PR dibuat:** `e4bf9e66c23e10265f69ca574b6dea44982f056c`
+- **Jumlah file pada PR saat dibuat:** 10
+- **Status pekerjaan:** IMPLEMENTED; belum VERIFIED (tidak ada build/test karena belum ada codebase).
+- **Integrasi:** UNMERGED.
