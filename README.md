@@ -6,7 +6,7 @@ GALYPS membantu calon pembeli melihat katalog produk dan dokumentasi hasil pemas
 
 ## Status proyek
 
-Tahap saat ini: **Project Documentation & Foundation**. Repository sedang disiapkan; codebase aplikasi belum dimulai. Lihat [progres.md](./progres.md) untuk status faktual dan bukti perubahan.
+Tahap saat ini: **Fondasi codebase**. Dokumentasi produk dan engineering telah disusun; lihat [progres.md](./progres.md) untuk status faktual dan bukti perubahan.
 
 ## Cakupan produk
 
@@ -27,9 +27,9 @@ Tahap saat ini: **Project Documentation & Foundation**. Repository sedang disiap
 
 | Area | Teknologi |
 |---|---|
-| Web | Astro + adapter Cloudflare |
+| Web | Astro + adapter Cloudflare untuk route on-demand |
 | Styling | Tailwind CSS |
-| Hosting publik | Cloudflare Pages |
+| Hosting dan runtime | Cloudflare Workers + Static Assets |
 | Database | Cloudflare D1 (SQLite) |
 | Object storage | Cloudflare R2 |
 | API admin | Cloudflare Workers |
@@ -37,7 +37,7 @@ Tahap saat ini: **Project Documentation & Foundation**. Repository sedang disiap
 | Development | GitHub Codespaces |
 | Source control | GitHub |
 
-GitHub digunakan untuk source code dan dokumentasi. GitHub bukan platform deployment maupun CMS. Deployment dilakukan ke Cloudflare.
+GitHub digunakan untuk source code dan dokumentasi. GitHub bukan platform deployment maupun CMS. Deployment dilakukan ke Cloudflare Workers menggunakan Wrangler setelah persetujuan pemilik.
 
 ## Dokumentasi
 
@@ -62,4 +62,4 @@ GitHub digunakan untuk source code dan dokumentasi. GitHub bukan platform deploy
 
 ## Status implementasi
 
-Belum ada aplikasi, schema D1, konfigurasi Wrangler, atau deployment yang dibuat pada tahap dokumentasi ini.
+Fondasi aplikasi belum dibuat. Belum ada schema D1, konfigurasi Wrangler, resource Cloudflare, atau deployment.
