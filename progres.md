@@ -93,3 +93,36 @@ Status integrasi branch dicatat terpisah: `UNMERGED` sampai perubahan benar-bena
 - **Commit SHA:** Akan dicatat setelah pembaruan selesai.
 - **PR:** #1, OPEN, UNMERGED.
 - **Integrasi:** UNMERGED.
+
+
+## GALYPS-REQ-001 — Hasil audit dan blocker keputusan hosting
+
+- **Status:** BLOCKED
+- **Branch:** `docs/project-foundation`
+- **Tujuan:** Menutup pemeriksaan awal batas paket dan kompatibilitas hosting sebelum fondasi codebase.
+- **Hasil validasi dokumentasi resmi (21 Nov 2026):**
+  - Workers Free: 100.000 request/hari; CPU 10 ms/request.
+  - D1 Free: 5 juta row read/hari, 100.000 row write/hari, total storage 5 GB. Batas harian yang terlampaui dapat menyebabkan query gagal sampai reset.
+  - R2 Standard Free: 10 GB-month, 1 juta operasi Class A/bulan, 10 juta Class B/bulan; egress internet gratis.
+  - Cloudflare Zero Trust Free: hingga 50 pengguna; Access One-Time PIN dikirim ke email yang lolos policy dan PIN berlaku 10 menit.
+  - Pages Free: 500 build/bulan, satu build berjalan bersamaan, 20.000 file per site, batas ukuran satu asset 25 MiB.
+- **Temuan kompatibilitas utama:** Dokumentasi Astro terbaru menyebut dukungan Cloudflare Pages pada Astro Cloudflare adapter telah dihapus. Cloudflare/Astro merekomendasikan Workers untuk proyek baru. Karena GAL-012 sebelumnya menetapkan Pages, perubahan ke Workers Static Assets tidak boleh dilakukan tanpa persetujuan Owner.
+- **Keputusan baru dicatat:** GAL-P13 pada `docs/DECISIONS.md`, status PENDING: memilih tetap Pages dengan kombinasi versi/arsitektur yang kompatibel atau beralih ke Workers + Static Assets.
+- **Sumber resmi yang ditinjau:**
+  - https://v6.docs.astro.build/en/guides/integrations-guide/cloudflare/
+  - https://docs.astro.build/en/guides/deploy/cloudflare/
+  - https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/
+  - https://developers.cloudflare.com/workers/platform/limits/
+  - https://developers.cloudflare.com/d1/platform/pricing/
+  - https://developers.cloudflare.com/d1/reference/faq/
+  - https://developers.cloudflare.com/r2/pricing/
+  - https://www.cloudflare.com/sase/products/access/
+  - https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/
+  - https://developers.cloudflare.com/pages/platform/limits/
+- **File berubah pada tahap ini:** `docs/DECISIONS.md` (menambahkan GAL-P13 dan memperjelas catatan GAL-P12); `progres.md` (catatan hasil audit).
+- **Commit SHA perubahan Decision Register:** `2fb9fb48d02d48231d2b5b173025fbce87dad758`.
+- **Test/CI:** Tidak dijalankan; tidak ada kode aplikasi pada tahap audit.
+- **Status verifikasi:** Audit dokumen selesai berdasarkan sumber resmi yang tersedia; belum ada verifikasi konfigurasi akun Cloudflare.
+- **PR:** #1, OPEN; head akan mengikuti commit terbaru branch.
+- **Integrasi:** UNMERGED.
+- **Blocker:** Persetujuan Owner untuk GAL-P13 diperlukan sebelum memilih adapter/runtime dan memulai Tahap 2.
